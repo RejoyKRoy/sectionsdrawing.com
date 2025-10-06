@@ -1,392 +1,297 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sections Interiors & Drawing Solutions - CAD Drafting & Interior Design Services</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Bijoy James — Sections Interiors & Drawing Solutions</title>
+<meta name="description" content="Portfolio of Bijoy James — precision interior drafting, joinery & millwork detailing, shop drawings, and design coordination."/>
+
+<style>
+/* ===== THEME TOKENS ===== */
+:root{
+  --bg:#f7f7f7; --surface:#ffffff; --ink:#222; --muted:#666;
+  --accent:#c9a574; --line:#e2e2e2; --shadow:0 6px 22px rgba(0,0,0,.08);
+}
+[data-theme="dark"]{
+  --bg:#0f1011; --surface:#171819; --ink:#f1f1f1; --muted:#b6b6b6;
+  --accent:#d4b271; --line:#27292b; --shadow:0 6px 22px rgba(0,0,0,.35);
+}
+
+/* ===== GLOBAL ===== */
+*{box-sizing:border-box; transition:background .3s,color .3s,border-color .3s;}
+html{scroll-behavior:smooth;}
+body{margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica,Arial;
+     color:var(--ink); background:var(--bg);}
+h1,h2,h3{margin:0 0 .7rem; line-height:1.1}
+p{color:var(--muted); line-height:1.7; margin:.5rem 0 1.1rem}
+a{color:var(--ink); text-decoration:none}
+.container{max-width:1200px; margin:0 auto; padding:0 24px}
+
+/* ===== HEADER ===== */
+header.site{position:sticky; top:0; z-index:20; backdrop-filter:saturate(160%) blur(6px);
+  background:rgba(247,247,247,.82); border-bottom:1px solid var(--line)}
+[data-theme="dark"] header.site{background:rgba(15,16,17,.75)}
+.nav{display:flex; align-items:center; gap:22px; padding:14px 0}
+.brand{font-weight:800; letter-spacing:.02em}
+.spacer{flex:1}
+.toggle{cursor:pointer; font-size:1.15rem; user-select:none; transition:transform .25s}
+.toggle:hover{transform:rotate(18deg)}
+.btn{display:inline-block; padding:11px 16px; border:1px solid var(--ink); border-radius:9px; font-weight:600}
+.btn.primary{background:var(--ink); color:var(--surface)}
+[data-theme="dark"] .btn{border-color:var(--accent); color:var(--accent)}
+[data-theme="dark"] .btn.primary{background:var(--accent); color:#111}
+
+/* ===== SECTIONS / EFFECTS ===== */
+section{padding:84px 0; opacity:0; transform:translateY(42px); transition:opacity 1s ease, transform 1s ease}
+section.visible{opacity:1; transform:translateY(0)}
+.split{display:grid; grid-template-columns:1fr 1fr; gap:40px}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:26px; box-shadow:var(--shadow)}
+.subtle{border:1px solid var(--line); border-radius:14px; padding:22px}
+
+/* ===== HERO with PARALLAX BG ===== */
+.hero{
+  position:relative; display:flex; align-items:center; min-height:70vh;
+  background:#ddd url('helmet-room-black-color-business.png') center/cover fixed no-repeat;
+}
+.hero::after{ /* light overlay so BLACK text is readable */
+  content:""; position:absolute; inset:0;
+  background: linear-gradient(0deg, rgba(255,255,255,.75), rgba(255,255,255,.55));
+  opacity: 1;
+  pointer-events:none;
+}
+.hero .inner{position:relative; z-index:1}
+.tag{display:inline-block; text-transform:uppercase; letter-spacing:.12em; font-size:.8rem; color:#111; opacity:.9}
+.hero h1{font-size:clamp(34px,5.6vw,64px); color:#111}
+.hero p{color:#111; max-width:800px}
+.hero .cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px}
+
+/* ===== PARALLAX INTERSTITIALS ===== */
+.parallax{
+  min-height:42vh; display:flex; align-items:center; justify-content:center; position:relative;
+  color:#fff; text-align:center; padding:60px 24px;
+  background-attachment:fixed; background-position:center; background-size:cover; background-repeat:no-repeat;
+}
+.parallax::after{content:""; position:absolute; inset:0; background:rgba(0,0,0,.35)}
+.parallax .text{position:relative; z-index:1; font-weight:600; font-size:clamp(18px,2.6vw,26px)}
+
+/* ===== SERVICES ===== */
+.services{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px}
+.service{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:22px; min-height:180px;
+  transition:transform .3s, box-shadow .3s}
+.service:hover{transform:translateY(-6px); box-shadow:var(--shadow)}
+
+/* ===== PROJECTS (TEXT ONLY) ===== */
+.projects{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px}
+.project{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:18px}
+
+/* ===== CONTACT ===== */
+form{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+form .full{grid-column:1/-1}
+input,textarea{width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:10px; background:var(--surface); color:var(--ink)}
+footer{padding:48px 0; border-top:1px solid var(--line); color:var(--muted); text-align:center}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:980px){
+  .split{grid-template-columns:1fr}
+  form{grid-template-columns:1fr}
+  .hero{min-height:64vh}
+}
+</style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <div class="logo-container">
-                    <div class="logo-s">S</div>
-                    <span class="company-name">Sections Interiors & Drawing Solutions</span>
-                </div>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#services" class="nav-link">Services</a></li>
-                <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
-                <li><a href="#why-choose" class="nav-link">Why Choose Us</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <div class="nav-toggle">
-                <span class="bar"></span>   
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-    </nav>
+<body data-theme="light">
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="hero-logo">
-                <div class="hero-logo-s">S</div>
-            </div>
-            <h1 class="hero-title">Comprehensive Interior CAD & Drafting Solutions</h1>
-            <p class="hero-subtitle">Specializing in custom interior design CAD drafting with expertise in Indian and international design standards for diverse global markets</p>
-            <a href="#contact" class="btn-primary">Start Your Project</a>
-        </div>
-        <div class="hero-visual">
-            <div class="technical-pattern">
-                <div class="cad-grid"></div>
-                <div class="blueprint-lines"></div>
-            </div>
-        </div>
-    </section>
+<header class="site">
+  <div class="container nav">
+    <div class="brand">Sections Interiors & Drawing Solutions</div>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+    <span class="spacer"></span>
+    <div class="toggle" id="themeToggle" title="Toggle theme">🌙</div>
+  </div>
+</header>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="section-header">
-                <h2>About Our CAD Drafting Expertise</h2>
-                <p>Comprehensive support for interior design CAD drafting services with expertise in Indian and international design standards</p>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Technical Excellence in CAD Drafting</h3>
-                    <p>Sections Interiors & Drawing Solutions provides comprehensive support for interior design CAD drafting services and technical drawing solutions. We specialize in drafting customized interiors for residential projects, shopping centers, offices, hotels, restaurants, and institutions.</p>
-                    <p>Our services include customized interior and millwork elevations, furniture layouts, and electrical drawings tailored to your requirements with expertise in Indian and international design standards. We act as a communication bridge between architects, engineers, fabricators, and contractors, helping them align project goals and eliminate design discrepancies.</p>
-                    <div class="about-highlights">
-                        <div class="highlight">
-                            <span class="highlight-number">500+</span>
-                            <span class="highlight-text">CAD Drawings Completed</span>
-                        </div>
-                        <div class="highlight">
-                            <span class="highlight-number">100%</span>
-                            <span class="highlight-text">Code Compliance</span>
-                        </div>
-                        <div class="highlight">
-                            <span class="highlight-number">24/7</span>
-                            <span class="highlight-text">Project Support</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-technical">
-                    <div class="technical-feature">
-                        <h4>Shop Drawings Specialization</h4>
-                        <p>Expert preparation of detailed technical drawings that ensure smooth transition from design to execution, eliminating design discrepancies and enhancing construction project efficiency.</p>
-                    </div>
-                    <div class="technical-feature">
-                        <h4>International Design Standards</h4>
-                        <p>Deep understanding of Indian and international building codes, with optimized solutions for diverse regional requirements and project specifications.</p>
-                    </div>
-                    <div class="technical-feature">
-                        <h4>Quality & Efficiency</h4>
-                        <p>Cost-effective solutions with skilled technical expertise, providing international quality services with quick completion times and customized design approaches.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ===== HERO (Parallax BG: helmet + plans) ===== -->
+<section class="hero">
+  <div class="container inner">
+    <span class="tag">INTERIOR FIT OUT • JOINERY DETAILING • SHOP DRAWINGS</span>
+    <h1>Precision in Design. Excellence in Execution.</h1>
+    <p>
+      We bridge the gap between creative intent and build reality through clear, coordinated, and construction-ready documentation.
+      From bespoke joinery to hospitality fit-outs, our drawings align architects, engineers, fabricators, and contractors around a single, accurate source of truth.
+    </p>
+    <div class="cta">
+      <a class="btn primary" href="#contact">Start a Project</a>
+      <a class="btn" href="#services">Explore Services</a>
+    </div>
+  </div>
+</section>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Technical Services</h2>
-                <p>Comprehensive CAD drafting and interior design solutions tailored to your requirements</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card featured">
-                    <div class="service-icon">📐</div>
-                    <h3>Full-scope CAD Drafting</h3>
-                    <p>Comprehensive CAD drafting for interiors, millwork, furniture layouts, and electrical plans, customized and compliant with Indian and international building codes.</p>
-                    <ul class="service-features">
-                        <li>Interior Layout Plans</li>
-                        <li>Millwork Drawings</li>
-                        <li>Furniture Layouts</li>
-                        <li>Electrical Plans</li>
-                    </ul>
-                </div>
-                <div class="service-card featured">
-                    <div class="service-icon">📋</div>
-                    <h3>Shop Drawings Preparation</h3>
-                    <p>Shop drawings are crucial in the construction industry, ensuring a smooth transition from design to execution. These detailed technical drawings act as a communication bridge between architects, engineers, fabricators and contractors.</p>
-                    <ul class="service-features">
-                        <li>Detail Technical Drawings</li>
-                        <li>Assembly Instructions</li>
-                        <li>Material Specifications</li>
-                        <li>Construction Coordination</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🔨</div>
-                    <h3>Millwork & Joinery Elevations</h3>
-                    <p>Customized interior and millwork elevations with precise dimensions, material specifications and assembly instructions tailored to your requirements.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🪑</div>
-                    <h3>Furniture Layout Optimization</h3>
-                    <p>Strategic furniture layouts tailored to your requirements, balancing function and aesthetics for optimal space utilization in various project types.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">💡</div>
-                    <h3>Electrical & Lighting Plans</h3>
-                    <p>Electrical drawings and lighting plans designed according to building codes and standards, ensuring safe and efficient installations.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">✅</div>
-                    <h3>Building Code Compliance</h3>
-                    <p>Your projects will be drafted according to building codes and standards, ensuring regulatory compliance across different regions and markets.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="container split">
+    <div class="card">
+      <h2>About Our Expertise</h2>
+      <p>
+        We focus on transforming interior concepts into precise, buildable drawings that remove ambiguity on site.
+        Our approach blends aesthetic sensitivity with technical rigor, ensuring that each line in the drawing serves function, code, and craft.
+        We collaborate closely with project teams so decisions are documented clearly and executed confidently.
+      </p>
+      <p>
+        Typical deliverables include space plans, detailed elevations, sections, joinery details, schedules, and coordinated shop drawings.
+        The outcome is fewer RFIs, fewer delays, and smoother installations from workshop to site.
+      </p>
+    </div>
+    <div class="card">
+      <h3>Capabilities</h3>
+      <div class="subtle">
+        <p><strong>Expertise</strong>: Interior CAD drafting, custom millwork detailing, shop drawings, electrical & layout plans, design coordination, and as-built updates.</p>
+                <p><strong>Approach</strong>: Timeline-driven, code-aware, and fabrication-ready—always aligned with stakeholder requirements.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio">
-        <div class="container">
-            <div class="section-header">
-                <h2>Portfolio Categories</h2>
-                <p>Specialized CAD drafting services across diverse project categories with focus on international quality standards</p>
-            </div>
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <div class="portfolio-icon">🏠</div>
-                    <div class="portfolio-content">
-                        <h3>Luxury Residential Projects</h3>
-                        <p>Custom interior drafting for premium homes and residential complexes with sophisticated design elements</p>
-                        <ul class="project-features">
-                            <li>Villa Interiors</li>
-                            <li>Apartment Layouts</li>
-                            <li>Residential Complexes</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-icon">🏢</div>
-                    <div class="portfolio-content">
-                        <h3>Commercial Offices</h3>
-                        <p>Professional office space design and layout optimization for enhanced productivity and functionality</p>
-                        <ul class="project-features">
-                            <li>Corporate Offices</li>
-                            <li>Workspace Planning</li>
-                            <li>Reception Areas</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-icon">🛍️</div>
-                    <div class="portfolio-content">
-                        <h3>Shopping Centers</h3>
-                        <p>Retail space design and layout planning for optimal customer flow and commercial success</p>
-                        <ul class="project-features">
-                            <li>Retail Layouts</li>
-                            <li>Mall Interiors</li>
-                            <li>Store Planning</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-icon">🏨</div>
-                    <div class="portfolio-content">
-                        <h3>Hotels & Hospitality</h3>
-                        <p>Hospitality interior design with focus on guest experience, comfort, and operational efficiency</p>
-                        <ul class="project-features">
-                            <li>Guest Rooms</li>
-                            <li>Lobby Design</li>
-                            <li>Restaurant Areas</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-icon">🍽️</div>
-                    <div class="portfolio-content">
-                        <h3>Restaurants & Dining</h3>
-                        <p>Food service establishment design with emphasis on ambiance, functionality, and customer experience</p>
-                        <ul class="project-features">
-                            <li>Kitchen Layouts</li>
-                            <li>Dining Areas</li>
-                            <li>Service Zones</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-icon">🎓</div>
-                    <div class="portfolio-content">
-                        <h3>Educational Institutions</h3>
-                        <p>Educational facility interior planning and design for optimal learning environments and functionality</p>
-                        <ul class="project-features">
-                            <li>Educational Facilities</li>
-                            <li>Learning Environments</li>
-                            <li>Administrative Areas</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-icon">🏥</div>
-                    <div class="portfolio-content">
-                        <h3>Healthcare Facilities</h3>
-                        <p>Medical facility design with focus on functionality, hygiene standards, and patient comfort</p>
-                        <ul class="project-features">
-                            <li>Medical Centers</li>
-                            <li>Patient Areas</li>
-                            <li>Healthcare Planning</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-icon">🏢</div>
-                    <div class="portfolio-content">
-                        <h3>Mixed-Use Developments</h3>
-                        <p>Comprehensive design solutions for multi-purpose developments and complex project requirements</p>
-                        <ul class="project-features">
-                            <li>Multi-Purpose Spaces</li>
-                            <li>Complex Developments</li>
-                            <li>Integrated Design</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ===== PARALLAX BREAK (Architect @ Computer) ===== -->
+<section class="parallax" style="background-image:url('architect-engineer-pointing-architectural-building-prototype-analyzing-construction-model-computer-businessman-designer-working-remote-from-home-real-estate-project-modeling-sketch.jpg')">
+  <div class="text">Turning concepts into build-ready precision drawings.</div>
+</section>
 
-    <!-- Why Choose Us Section -->
-    <section id="why-choose" class="why-choose">
-        <div class="container">
-            <div class="section-header">
-                <h2>Why Choose Sections Interiors & Drawing Solutions</h2>
-                <p>Our key commitments that set us apart in the CAD drafting industry</p>
-            </div>
-            <div class="commitments-grid">
-                <div class="commitment-card">
-                    <div class="commitment-icon">⏰</div>
-                    <h3>Project Timeline Commitment</h3>
-                    <p>We are committed to your project timelines and deliver quality work within agreed schedules</p>
-                </div>
-                <div class="commitment-card">
-                    <div class="commitment-icon">🎨</div>
-                    <h3>Customized Design Solutions</h3>
-                    <p>The design is customized as per your requirements, ensuring unique solutions for each project</p>
-                </div>
-                <div class="commitment-card">
-                    <div class="commitment-icon">📏</div>
-                    <h3>Building Standards Compliance</h3>
-                    <p>Your projects will be drafted according to building codes and standards, ensuring regulatory approval</p>
-                </div>
-                <div class="commitment-card">
-                    <div class="commitment-icon">⚖️</div>
-                    <h3>Function & Aesthetics Balance</h3>
-                    <p>We consider your requirements for functions and aesthetics in drafting, creating harmonious designs</p>
-                </div>
-                <div class="commitment-card">
-                    <div class="commitment-icon">⚡</div>
-                    <h3>Efficient Project Completion</h3>
-                    <p>We offer successful completion in the shortest time without compromising on quality standards</p>
-                </div>
-                <div class="commitment-card">
-                    <div class="commitment-icon">🛠️</div>
-                    <h3>Technical Excellence</h3>
-                    <p>Our shop drawings reduce errors, minimize delays and enhance the overall efficiency of construction projects</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ===== SERVICES ===== -->
+<section id="services">
+  <div class="container">
+    <h2>Services</h2>
+    <p>
+      End-to-end drafting and coordination for residential, commercial, and hospitality interiors. Each package is tailored to your
+      scope—whether you need schematic development or fabrication-grade shop drawings for fit-out.
+    </p>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2>Get in Touch</h2>
-                <p>Ready to start your CAD drafting project? Contact our technical team</p>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <h3>📧 Email</h3>
-                        <p>bijoy.james@sectionsdrawing.com/</p>
-                    </div>
-                    <div class="contact-item">
-                        <h3>📞 Phone</h3>
-                        <p>+91 8606773179</p>
-                    </div>
-                    <div class="contact-item">
-                        <h3>🌍 Service Areas</h3>
-                        <p>India & GCC Region</p>
-                    </div>
-                    <div class="contact-item">
-                        <h3>🎯 Specializations</h3>
-                        <p>Indian & International Design Standards</p>
-                    </div>
-                </div>
-                <form class="contact-form">
-                    <div class="form-row">
-                        <input type="text" name="name" placeholder="Your Name" required class="form-input">
-                        <input type="email" name="email" placeholder="Your Email" required class="form-input">
-                    </div>
-                    <div class="form-row">
-                        <input type="text" name="company" placeholder="Company Name" class="form-input">
-                        <select name="project-type" class="form-input">
-                            <option value="">Select Project Type</option>
-                            <option value="residential">Luxury Residential</option>
-                            <option value="commercial">Commercial Offices</option>
-                            <option value="hospitality">Hotels & Hospitality</option>
-                            <option value="retail">Shopping Centers</option>
-                            <option value="institutional">Educational Institutions</option>
-                            <option value="healthcare">Healthcare Facilities</option>
-                            <option value="mixed-use">Mixed-Use Developments</option>
-                            <option value="shop-drawings">Shop Drawings</option>
-                        </select>
-                    </div>
-                    <input type="text" name="subject" placeholder="Subject" required class="form-input">
-                    <textarea name="message" placeholder="Tell us about your CAD drafting requirements..." rows="5" required class="form-input"></textarea>
-                    <button type="submit" class="btn-primary">Send Message</button>
-                </form>
-            </div>
-        </div>
-    </section>
+    <div class="services">
+      <div class="service">
+        <h3>Interior CAD Drafting</h3>
+        <p>Plans, sections, elevations, and details prepared with clear annotations, dimensions, and references for smooth execution.</p>
+      </div>
+      <div class="service">
+        <h3>Joinery & Millwork Detailing</h3>
+        <p>Custom furniture and fit-out details optimized for fabrication accuracy, tolerance allowances, and site installability.</p>
+      </div>
+      <div class="service">
+        <h3>Shop Drawings</h3>
+        <p>Fully coordinated drawings acting as the single source of truth—reducing errors, RFIs, and rework during construction.</p>
+      </div>
+      <div class="service">
+        <h3>Electrical & Layout Plans</h3>
+        <p>Lighting, power, and device layouts planned around function, codes, and aesthetics for seamless integration.</p>
+      </div>
+      <div class="service">
+        <h3>Design Coordination</h3>
+        <p>Cross-discipline alignment with architects, engineers, fabricators, and contractors to keep projects moving.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <div class="footer-logo-s">S</div>
-                        <h3>Sections Interiors & Drawing Solutions</h3>
-                    </div>
-                    <p>Professional CAD drafting and interior design solutions with expertise in Indian and international design standards.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Services</h4>
-                    <ul>
-                        <li>CAD Drafting</li>
-                        <li>Shop Drawings</li>
-                        <li>Interior Design</li>
-                        <li>Building Code Compliance</li>
-                        <li>Millwork & Joinery</li>
-                        <li>Electrical Planning</li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>bijoy.james@sectionsdrawing.com</p>
-                    <p>+91 8606773179</p>
-                    <p>India & GCC Region</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Sections Interiors & Drawing Solutions. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+<!-- ===== CRAFT PARALLAX (Woodworking hands) ===== -->
+<section class="parallax" style="background-image:url('carpenters-hands-planing-plank-wood-with-hand-plane.jpg')">
+  <div class="text">Where creativity meets craftsmanship.</div>
+</section>
 
-    <script src="app.js"></script>
+<!-- ===== PROJECTS (TEXT ONLY) ===== -->
+<section id="projects">
+  <div class="container">
+    <h2>Portfolio Highlights</h2>
+    <p>Selected works delivered through drafting, joinery detailing, and coordinated shop drawings for execution & completion.</p>
+
+    <div class="projects">
+      <div class="project"><strong>Sail Tower (Shangri-La Resorts)</strong><br/>Jeddah, KSA</div>
+      <div class="project"><strong>Dhofar Beach Resort &amp; Spa</strong><br/>Salalah, Sultanate of Oman</div>
+      <div class="project"><strong>Embassy One</strong><br/>Bangalore, India</div>
+      <div class="project"><strong>Sundus Rotana</strong><br/>Muscat, Oman</div>
+      <div class="project"><strong>Al Nama (QIB Hotel)</strong><br/>Doha, Qatar</div>
+      <div class="project"><strong>Hilton Garden Inn</strong><br/>KSA</div>
+      <div class="project"><strong>Tabouk Hotel</strong><br/>KSA</div>
+      <div class="project"><strong>Salalah Airport</strong><br/>Sultanate of Oman</div>
+      <div class="project"><strong>IT Park</strong><br/>Pune, India</div>
+      <div class="project"><strong>Dallah Taibah Hotel</strong><br/>KSA</div>
+      <div class="project"><strong>Radisson Blu Hotel</strong><br/>Muscat, Oman</div>
+      <div class="project"><strong>Al Fardan</strong><br/>Muscat, Oman</div>
+      <div class="project"><strong>ITC Grand Chola</strong><br/>Chennai, India</div>
+      <div class="project"><strong>Jal Tower (DXB-236)</strong><br/>Dubai, UAE</div>
+      <div class="project"><strong>Hilton Fujairah Resort</strong><br/>UAE</div>
+      <div class="project"><strong>Crown Plaza</strong><br/>Sohar, Oman</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="container split">
+    <div class="card">
+      <h2>Start a Project</h2>
+      <p>
+        Share your scope and timelines and we’ll outline the deliverables, schedule, and coordination plan to take your
+        project from intent to installation—cleanly and confidently.
+      </p>
+      <p><strong>Email:</strong> sectionsinterior@gmail.com<br/>
+<strong>Email:</strong> bijoy.james@sectionsdrawing.com<br/>
+         <strong>Phone:</strong> +91 8606773179<br/>
+         <strong>Location:</strong> Kerala, India</p>
+    </div>
+
+    <!-- Formspree-integrated form -->
+    <div class="card">
+      <form id="contactForm" action="https://formspree.io/f/xldplaor" method="POST" novalidate>
+        <!-- Visible fields -->
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="_replyto" placeholder="Email" required>
+        <input type="text" name="project" placeholder="Project Type">
+        <textarea class="full" name="message" rows="6" placeholder="Message" required></textarea>
+
+        <!-- Optional metadata -->
+        <input type="hidden" name="_subject" value="New inquiry from Bijoy portfolio site">
+        <!-- Honeypot (spam trap) -->
+        <input type="text" name="_gotcha" style="display:none">
+
+        <button class="btn primary full" type="submit">Send Message</button>
+        <div id="formStatus" class="full" style="margin-top:10px; font-size:.95rem; opacity:.95"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">© 2025 Bijoy James — Sections Interiors & Drawing Solutions</div>
+</footer>
+
+<script>
+/* Theme toggle */
+const t=document.getElementById('themeToggle');
+t.addEventListener('click',()=>{const b=document.body;const cur=b.getAttribute('data-theme');
+ const nxt=cur==='light'?'dark':'light'; b.setAttribute('data-theme',nxt); t.textContent=nxt==='light'?'🌙':'☀️';});
+
+/* Fade-in on scroll */
+const sections=document.querySelectorAll('section');
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.2});
+sections.forEach(s=>io.observe(s));
+
+/* Formspree async submission */
+const form=document.getElementById('contactForm');
+const statusBox=document.getElementById('formStatus');
+function showStatus(msg, ok=true){ statusBox.textContent=msg; statusBox.style.color= ok ? 'green' : 'crimson'; }
+form.addEventListener('submit', async (e)=>{
+  e.preventDefault(); showStatus('Sending...', true);
+  try{
+    const data=new FormData(form);
+    const res=await fetch(form.action,{ method:'POST', body:data, headers:{'Accept':'application/json'} });
+    if(res.ok){ form.reset(); showStatus('Thank you! Your message has been sent successfully.'); }
+    else{
+      const err=await res.json().catch(()=>({}));
+      const msg=err.errors?.map(e=>e.message).join(', ') || 'Something went wrong. Please try again.';
+      showStatus(msg,false);
+    }
+  }catch(err){ showStatus('Network error. Please check your connection and try again.', false); }
+});
+</script>
 </body>
 </html>
