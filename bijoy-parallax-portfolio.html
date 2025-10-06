@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Bijoy James — Sections Interiors & Drawing Solutions</title>
+<meta name="description" content="Portfolio of Bijoy James — precision interior drafting, joinery & millwork detailing, shop drawings, and design coordination."/>
+
+<style>
+/* ===== THEME TOKENS ===== */
+:root{
+  --bg:#f7f7f7; --surface:#ffffff; --ink:#222; --muted:#666;
+  --accent:#c9a574; --line:#e2e2e2; --shadow:0 6px 22px rgba(0,0,0,.08);
+}
+[data-theme="dark"]{
+  --bg:#0f1011; --surface:#171819; --ink:#f1f1f1; --muted:#b6b6b6;
+  --accent:#d4b271; --line:#27292b; --shadow:0 6px 22px rgba(0,0,0,.35);
+}
+
+/* ===== GLOBAL ===== */
+*{box-sizing:border-box; transition:background .3s,color .3s,border-color .3s;}
+html{scroll-behavior:smooth;}
+body{margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica,Arial;
+     color:var(--ink); background:var(--bg);}
+h1,h2,h3{margin:0 0 .7rem; line-height:1.1}
+p{color:var(--muted); line-height:1.7; margin:.5rem 0 1.1rem}
+a{color:var(--ink); text-decoration:none}
+.container{max-width:1200px; margin:0 auto; padding:0 24px}
+
+/* ===== HEADER ===== */
+header.site{position:sticky; top:0; z-index:20; backdrop-filter:saturate(160%) blur(6px);
+  background:rgba(247,247,247,.82); border-bottom:1px solid var(--line)}
+[data-theme="dark"] header.site{background:rgba(15,16,17,.75)}
+.nav{display:flex; align-items:center; gap:22px; padding:14px 0}
+.brand{font-weight:800; letter-spacing:.02em}
+.spacer{flex:1}
+.toggle{cursor:pointer; font-size:1.15rem; user-select:none; transition:transform .25s}
+.toggle:hover{transform:rotate(18deg)}
+.btn{display:inline-block; padding:11px 16px; border:1px solid var(--ink); border-radius:9px; font-weight:600}
+.btn.primary{background:var(--ink); color:var(--surface)}
+[data-theme="dark"] .btn{border-color:var(--accent); color:var(--accent)}
+[data-theme="dark"] .btn.primary{background:var(--accent); color:#111}
+
+/* ===== SECTIONS / EFFECTS ===== */
+section{padding:84px 0; opacity:0; transform:translateY(42px); transition:opacity 1s ease, transform 1s ease}
+section.visible{opacity:1; transform:translateY(0)}
+.split{display:grid; grid-template-columns:1fr 1fr; gap:40px}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:26px; box-shadow:var(--shadow)}
+.subtle{border:1px solid var(--line); border-radius:14px; padding:22px}
+
+/* ===== HERO with PARALLAX BG ===== */
+.hero{
+  position:relative; display:flex; align-items:center; min-height:70vh;
+  background:#ddd url('helmet-room-black-color-business.png') center/cover fixed no-repeat;
+}
+.hero::after{ /* light overlay so BLACK text is readable */
+  content:""; position:absolute; inset:0;
+  background: linear-gradient(0deg, rgba(255,255,255,.75), rgba(255,255,255,.55));
+  opacity: 1; pointer-events:none;
+}
+.hero .inner{position:relative; z-index:1}
+.tag{display:inline-block; text-transform:uppercase; letter-spacing:.12em; font-size:.8rem; color:#111; opacity:.9}
+.hero h1{font-size:clamp(34px,5.6vw,64px); color:#111}
+.hero p{color:#111; max-width:800px}
+.hero .cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px}
+
+/* ===== PARALLAX INTERSTITIALS ===== */
+.parallax{
+  min-height:42vh; display:flex; align-items:center; justify-content:center; position:relative;
+  color:#fff; text-align:center; padding:60px 24px;
+  background-attachment:fixed; background-position:center; background-size:cover; background-repeat:no-repeat;
+}
+.parallax::after{content:""; position:absolute; inset:0; background:rgba(0,0,0,.35)}
+.parallax .text{position:relative; z-index:1; font-weight:600; font-size:clamp(18px,2.6vw,26px)}
+
+/* ===== SERVICES ===== */
+.services{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px}
+.service{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:22px; min-height:180px;
+  transition:transform .3s, box-shadow .3s}
+.service:hover{transform:translateY(-6px); box-shadow:var(--shadow)}
+
+/* ===== PROJECTS (TEXT ONLY) ===== */
+.projects{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px}
+.project{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:18px}
+
+/* ===== CONTACT ===== */
+form{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+form .full{grid-column:1/-1}
+input,textarea{width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:10px; background:var(--surface); color:var(--ink)}
+footer{padding:48px 0; border-top:1px solid var(--line); color:var(--muted); text-align:center}
+
+/* ===== RESPONSIVE FIXES ===== */
+@media (max-width:980px){
+  .container{padding:0 18px}
+  section{padding:64px 0}
+  .split{grid-template-columns:1fr}
+  form{grid-template-columns:1fr}
+  .hero{min-height:64vh}
+  /* Disable fixed backgrounds for performance & iOS */
+  .hero{background-attachment:scroll; background-position:center}
+  .parallax{background-attachment:scroll; min-height:36vh}
+  .hero h1{font-size:clamp(28px,7vw,44px)}
+  .hero p{font-size:0.98rem}
+  .hero .cta .btn{width:100%; text-align:center}
+  .nav{flex-wrap:wrap; gap:12px}
+  .brand{width:100%; margin-bottom:6px}
+  .nav a{font-size:.95rem}
+}
+@media (max-width:480px){
+  .container{padding:0 14px}
+  section{padding:56px 0}
+  .hero{min-height:56vh}
+  .hero p{font-size:0.95rem}
+  .projects{grid-template-columns:1fr}
+  .services{grid-template-columns:1fr}
+}
+
+/* Extra iOS safety: force non-fixed attachment */
+@supports (-webkit-touch-callout: none) {
+  .hero, .parallax { background-attachment: scroll; }
+}
+</style>
+</head>
+<body data-theme="light">
+
+<header class="site">
+  <div class="container nav">
+    <div class="brand">Bijoy James — Sections Interiors & Drawing Solutions</div>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+    <span class="spacer"></span>
+    <div class="toggle" id="themeToggle" title="Toggle theme">🌙</div>
+  </div>
+</header>
+
+<!-- ===== HERO (Parallax BG: helmet + plans) ===== -->
+<section class="hero">
+  <div class="container inner">
+    <span class="tag">INTERIOR DRAFTING • JOINERY DETAILING • SHOP DRAWINGS</span>
+    <h1>Precision in Design. Excellence in Execution.</h1>
+    <p>
+      We bridge the gap between creative intent and build reality through clear, coordinated, and construction-ready documentation.
+      From bespoke joinery to hospitality fit-outs, our drawings align architects, engineers, fabricators, and contractors around a single, accurate source of truth.
+    </p>
+    <div class="cta">
+      <a class="btn primary" href="#contact">Start a Project</a>
+      <a class="btn" href="#services">Explore Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="container split">
+    <div class="card">
+      <h2>About Bijoy</h2>
+      <p>
+        I focus on transforming interior concepts into precise, buildable drawings that remove ambiguity on site.
+        My approach blends aesthetic sensitivity with technical rigor, ensuring that each line in the drawing serves function, code, and craft.
+        I collaborate closely with project teams so decisions are documented clearly and executed confidently.
+      </p>
+      <p>
+        Typical deliverables include space plans, detailed elevations, sections, joinery details, schedules, and coordinated shop drawings.
+        The outcome is fewer RFIs, fewer delays, and smoother installations from workshop to site.
+      </p>
+    </div>
+    <div class="card">
+      <h3>Capabilities & Tools</h3>
+      <div class="subtle">
+        <p><strong>Expertise</strong>: Interior CAD drafting, custom millwork detailing, shop drawings,
+           electrical & layout plans, design coordination, and as-built updates.</p>
+        <p><strong>Toolset</strong>: AutoCAD, Revit/SketchUp (as needed), and disciplined documentation
+           practices for versioning, schedules, and specifications.</p>
+        <p><strong>Approach</strong>: Timeline-driven, code-aware, and fabrication-ready—always aligned with stakeholder requirements.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PARALLAX BREAK (Architect @ Computer) ===== -->
+<section class="parallax" style="background-image:url('architect-engineer-pointing-architectural-building-prototype-analyzing-construction-model-computer-businessman-designer-working-remote-from-home-real-estate-project-modeling-sketch.jpg')">
+  <div class="text">Turning concepts into build-ready precision drawings.</div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section id="services">
+  <div class="container">
+    <h2>Services</h2>
+    <p>
+      End-to-end drafting and coordination for residential, commercial, and hospitality interiors. Each package is tailored to your
+      scope—whether you need schematic development or fabrication-grade shop drawings for fit-out.
+    </p>
+
+    <div class="services">
+      <div class="service">
+        <h3>Interior CAD Drafting</h3>
+        <p>Plans, sections, elevations, and details prepared with clear annotations, dimensions, and references for smooth execution.</p>
+      </div>
+      <div class="service">
+        <h3>Joinery & Millwork Detailing</h3>
+        <p>Custom furniture and fit-out details optimized for fabrication accuracy, tolerance allowances, and site installability.</p>
+      </div>
+      <div class="service">
+        <h3>Shop Drawings</h3>
+        <p>Fully coordinated drawings acting as the single source of truth—reducing errors, RFIs, and rework during construction.</p>
+      </div>
+      <div class="service">
+        <h3>Electrical & Layout Plans</h3>
+        <p>Lighting, power, and device layouts planned around function, codes, and aesthetics for seamless integration.</p>
+      </div>
+      <div class="service">
+        <h3>Design Coordination</h3>
+        <p>Cross-discipline alignment with architects, engineers, fabricators, and contractors to keep projects moving.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CRAFT PARALLAX (Woodworking hands) ===== -->
+<section class="parallax" style="background-image:url('carpenters-hands-planing-plank-wood-with-hand-plane.jpg')">
+  <div class="text">Where creativity meets craftsmanship.</div>
+</section>
+
+<!-- ===== PROJECTS (TEXT ONLY) ===== -->
+<section id="projects">
+  <div class="container">
+    <h2>Portfolio Highlights</h2>
+    <p>Selected works delivered through drafting, joinery detailing, and coordinated shop drawings for execution & completion.</p>
+
+    <div class="projects">
+      <div class="project"><strong>Sail Tower (Shangri-La Resorts)</strong><br/>Jeddah, KSA</div>
+      <div class="project"><strong>Dhofar Beach Resort &amp; Spa</strong><br/>Salalah, Sultanate of Oman</div>
+      <div class="project"><strong>Embassy One</strong><br/>Bangalore, India</div>
+      <div class="project"><strong>Sundus Rotana</strong><br/>Muscat, Oman</div>
+      <div class="project"><strong>Al Nama (QIB Hotel)</strong><br/>Doha, Qatar</div>
+      <div class="project"><strong>Hilton Garden Inn</strong><br/>KSA</div>
+      <div class="project"><strong>Tabouk Hotel</strong><br/>KSA</div>
+      <div class="project"><strong>Salalah Airport</strong><br/>Sultanate of Oman</div>
+      <div class="project"><strong>IT Park</strong><br/>Pune, India</div>
+      <div class="project"><strong>Dallah Taibah Hotel</strong><br/>KSA</div>
+      <div class="project"><strong>Radisson Blu Hotel</strong><br/>Muscat, Oman</div>
+      <div class="project"><strong>Al Fardan</strong><br/>Muscat, Oman</div>
+      <div class="project"><strong>ITC Grand Chola</strong><br/>Chennai, India</div>
+      <div class="project"><strong>Jal Tower (DXB-236)</strong><br/>Dubai, UAE</div>
+      <div class="project"><strong>Hilton Fujairah Resort</strong><br/>UAE</div>
+      <div class="project"><strong>Crown Plaza</strong><br/>Sohar, Oman</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="container split">
+    <div class="card">
+      <h2>Start a Project</h2>
+      <p>
+        Share your scope and timelines and we’ll outline the deliverables, schedule, and coordination plan to take your
+        project from intent to installation—cleanly and confidently.
+      </p>
+      <p><strong>Email:</strong> sectionsinterior@gmail.com<br/>
+         <strong>Phone:</strong> +91 8606773179<br/>
+         <strong>Location:</strong> Kerala, India</p>
+    </div>
+
+    <!-- Formspree-integrated form -->
+    <div class="card">
+      <form id="contactForm" action="https://formspree.io/f/xldplaor" method="POST" novalidate>
+        <!-- Visible fields -->
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="_replyto" placeholder="Email" required>
+        <input type="text" name="project" placeholder="Project Type">
+        <textarea class="full" name="message" rows="6" placeholder="Message" required></textarea>
+
+        <!-- Optional metadata -->
+        <input type="hidden" name="_subject" value="New inquiry from Bijoy portfolio site">
+        <!-- Honeypot (spam trap) -->
+        <input type="text" name="_gotcha" style="display:none">
+
+        <button class="btn primary full" type="submit">Send Message</button>
+        <div id="formStatus" class="full" style="margin-top:10px; font-size:.95rem; opacity:.95"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">© 2025 Bijoy James — Sections Interiors & Drawing Solutions</div>
+</footer>
+
+<script>
+/* Theme toggle */
+const t=document.getElementById('themeToggle');
+t.addEventListener('click',()=>{const b=document.body;const cur=b.getAttribute('data-theme');
+ const nxt=cur==='light'?'dark':'light'; b.setAttribute('data-theme',nxt); t.textContent=nxt==='light'?'🌙':'☀️';});
+
+/* Fade-in on scroll */
+const sections=document.querySelectorAll('section');
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.2});
+sections.forEach(s=>io.observe(s));
+
+/* Formspree async submission */
+const form=document.getElementById('contactForm');
+const statusBox=document.getElementById('formStatus');
+function showStatus(msg, ok=true){ statusBox.textContent=msg; statusBox.style.color= ok ? 'green' : 'crimson'; }
+form.addEventListener('submit', async (e)=>{
+  e.preventDefault(); showStatus('Sending...', true);
+  try{
+    const data=new FormData(form);
+    const res=await fetch(form.action,{ method:'POST', body:data, headers:{'Accept':'application/json'} });
+    if(res.ok){ form.reset(); showStatus('Thank you! Your message has been sent successfully.'); }
+    else{
+      const err=await res.json().catch(()=>({}));
+      const msg=err.errors?.map(e=>e.message).join(', ') || 'Something went wrong. Please try again.';
+      showStatus(msg,false);
+    }
+  }catch(err){ showStatus('Network error. Please check your connection and try again.', false); }
+});
+</script>
+</body>
+</html>
